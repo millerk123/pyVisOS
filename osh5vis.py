@@ -70,28 +70,28 @@ def __osplot1d(func, h5data, xlabel=None, ylabel=None, xlim=None, ylim=None, tit
     return plot_object
 
 
-def osplot1d(h5data, *args, ax=None, **kwpassthrough):
+def osplot1d(h5data, ax=None, *args, **kwpassthrough):
     plot = plt.plot if ax is None else ax.plot
     return __osplot1d(plot, h5data, *args, **kwpassthrough)
 
 
-def ossemilogx(h5data, *args, ax=None, **kwpassthrough):
+def ossemilogx(h5data, ax=None, *args, **kwpassthrough):
     semilogx = plt.semilogx if ax is None else ax.semilogx
     return __osplot1d(semilogx, h5data, *args, **kwpassthrough)
 
 
-def ossemilogy(h5data, *args, ax=None, **kwpassthrough):
+def ossemilogy(h5data, ax=None, *args, **kwpassthrough):
     semilogy = plt.semilogy if ax is None else ax.semilogy
     return __osplot1d(semilogy, h5data, *args, **kwpassthrough)
 
 
-def osloglog(h5data, *args, ax=None, **kwpassthrough):
+def osloglog(h5data, ax=None, *args, **kwpassthrough):
     loglog = plt.loglog if ax is None else ax.loglog
     return __osplot1d(loglog, h5data, *args, **kwpassthrough)
 
 
-def __osplot2d(func, h5data, *args, xlabel=None, ylabel=None, cblabel=None, title=None, xlim=None, ylim=None, clim=None,
-               colorbar=True, ax=None, im=None, cb=None, convert_xaxis=False, convert_yaxis=False, fig=None,
+def __osplot2d(func, h5data, xlabel=None, ylabel=None, cblabel=None, title=None, xlim=None, ylim=None, clim=None,
+               colorbar=True, ax=None, im=None, cb=None, convert_xaxis=False, convert_yaxis=False, fig=None, *args,
                **kwpassthrough):
     if convert_xaxis:
         axis = h5data.axes[1].to_phys_unit()
@@ -147,24 +147,24 @@ def __osplot2d(func, h5data, *args, xlabel=None, ylabel=None, cblabel=None, titl
     return plot_object, None
 
 
-def osimshow(h5data, *args, ax=None, cb=None, aspect=None, **kwpassthrough):
+def osimshow(h5data, ax=None, cb=None, aspect=None, *args, **kwpassthrough):
     imshow = ax.imshow if ax is not None else plt.imshow
     asp = 'auto' if aspect is None else aspect
     return __osplot2d(imshow, h5data, *args, cb=cb, aspect=asp, origin='lower', **kwpassthrough)
 
 
-def oscontour(h5data, *args, ax=None, cb=None, **kwpassthrough):
+def oscontour(h5data, ax=None, cb=None, *args, **kwpassthrough):
     contour = ax.contour if ax is not None else plt.contour
     return __osplot2d(contour, h5data, *args, cb=cb, **kwpassthrough)
 
 
-def oscontourf(h5data, *args, ax=None, cb=None, **kwpassthrough):
+def oscontourf(h5data, ax=None, cb=None, *args, **kwpassthrough):
     contourf = ax.contourf if ax is not None else plt.contourf
     return __osplot2d(contourf, h5data, *args, cb=cb, **kwpassthrough)
 
 
-def new_fig(h5data, *args, figsize=None, dpi=None, facecolor=None, edgecolor=None, linewidth=0.0, frameon=None,
-            tight_layout=None, **kwpassthrough):
+def new_fig(h5data, figsize=None, dpi=None, facecolor=None, edgecolor=None, linewidth=0.0, frameon=None,
+            tight_layout=None, *args, **kwpassthrough):
     plt.figure(figsize=figsize, dpi=dpi, facecolor=facecolor, edgecolor=edgecolor, linewidth=linewidth, frameon=frameon,
                tight_layout=tight_layout)
     osplot(h5data, *args, **kwpassthrough)

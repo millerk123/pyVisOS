@@ -188,7 +188,7 @@ def write_h5(data, filename=None, path=None, dataset_name=None, overwrite=True, 
         data_attrs['UNITS'] = np.array([b'a.u.'])
     # copy over any values we have in the 'H5Data' object;
     for key, value in data_attrs.items():
-        h5dataset.attrs[key] = np.array([value.encode('utf-8')]) if isinstance(value, str) else value
+        h5dataset.attrs[key] = np.array([value.encode('utf-8')]) if isinstance(value, basestring) else value
     # these are required so we make defaults..
     h5file.attrs['DT'] = [1.0]
     h5file.attrs['ITER'] = [0]
@@ -201,7 +201,7 @@ def write_h5(data, filename=None, path=None, dataset_name=None, overwrite=True, 
     h5file.attrs['XMAX'] = [0.0]
     # now make defaults/copy over the attributes in the root of the hdf5
     for key, value in data_object.run_attrs.items():
-        h5file.attrs[key] = np.array([value.encode('utf-8')]) if isinstance(value, str) else value
+        h5file.attrs[key] = np.array([value.encode('utf-8')]) if isinstance(value, basestring) else value
 
     number_axis_objects_we_need = len(data_object.axes)
     # now go through and set/create our axes HDF entries.
@@ -226,7 +226,7 @@ def write_h5(data, filename=None, path=None, dataset_name=None, overwrite=True, 
                 except:
                     axis_data.attrs['UNITS'] = np.array([b'a.u.'])
             else:
-                axis_data.attrs[key] = np.array([value.encode('utf-8')]) if isinstance(value, str) else value
+                axis_data.attrs[key] = np.array([value.encode('utf-8')]) if isinstance(value, basestring) else value
     h5file.close()
 
 
