@@ -16,7 +16,7 @@ import threading
 print("Importing osh5visipy. Please use `%matplotlib notebook' in your jupyter/ipython notebook")
 
 
-def osimshow_w(data, *args, show=True, **kwargs):
+def osimshow_w(data, show=True, *args, **kwargs):
     """
     2D plot with widgets
     :param data: 2D H5Data
@@ -32,7 +32,7 @@ def osimshow_w(data, *args, show=True, **kwargs):
         return wl
 
 
-def slicer_w(data, *args, show=True, slider_only=False, **kwargs):
+def slicer_w(data, show=True, slider_only=False, *args, **kwargs):
     """
     A slider for 3D data
     :param data: 3D H5Data or directory name (a string)
