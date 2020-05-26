@@ -15,7 +15,14 @@ def time_format(time=0.0, unit=None):
 
 
 def default_title(h5data, show_time=True):
-    tmp = tex(h5data.data_attrs['LONG_NAME'])
+    if title is None:
+        try:
+            tmp = tex(h5data.data_attrs['LONG_NAME'])
+        except:
+            tmp = tex(h5data.data_attrs['NAME'])
+    else:
+        tmp = tex(title)
+
     if show_time and not h5data.has_axis('t'):
         try:
             tmp += ', ' + time_format(h5data.run_attrs['TIME'][0], h5data.run_attrs['TIME UNITS'])
